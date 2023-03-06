@@ -38,7 +38,7 @@
 </details>
 
 <details>
-  <summary>Postgres</summary>
+  <summary>Database</summary>
   <ul>
     <li><a href="https://www.postgresql.org/">Postgres</a></li>
   </ul>
