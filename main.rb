@@ -1,16 +1,10 @@
 require_relative './classes/person'
-require_relative './classes/student'
-require_relative './classes/teacher'
+require_relative './classes/decorator_capitalize'
+require_relative './classes/decorator_trimmer'
 
-person1 = Person.new(41, 'Juan', parent_permission: false)
-student1 = Student.new(14, 'A1', 'Carlos', parent_permission: false)
-teacher1 = Teacher.new(28, 'Math', 'Carlos', parent_permission: false)
-
-p(person1)
-p(person1.can_use_service?)
-
-p(student1)
-p(student1.play_hooky)
-
-p(teacher1)
-p(teacher1.can_use_service?)
+person = Person.new(22, 'maximilianus')
+p person.correct_name
+capitalized_person = DecoratorCapitalize.new(person)
+p capitalized_person.correct_name
+capitalized_trimmed_person = DecoratorTrimmer.new(capitalized_person)
+p capitalized_trimmed_person.correct_name
