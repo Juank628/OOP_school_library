@@ -19,7 +19,6 @@
 - [🤝 Contributing](#contributing)
 - [⭐️ Show your support](#support)
 - [🙏 Acknowledgements](#acknowledgements)
-- [❓ FAQ](#faq)
 - [📝 License](#license)
 
 # 📖 OOP School Library <a name="about-project"></a>
@@ -92,6 +91,13 @@ To run tests, run the following command:
 - GitHub: [@Juank628](https://github.com/Juank628)
 - Twitter: [@juancadev81](https://twitter.com/juancadev81)
 - LinkedIn: [LinkedIn](https://linkedin.com/in/juan-carlos-sanchez-zunino)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 🔭 Future Features <a name="future-features"></a>
+
+- **Database connection**
+- **React Frontend interface**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
