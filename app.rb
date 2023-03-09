@@ -26,6 +26,18 @@ def main
       Student.all.each { |student| puts "[Student] Name: #{student.name}, ID: #{student.id}, Age: #{student.age}" }
     end
 
+    if option == 3
+      puts 'Do you want to create a student (1) or a teacher (2)? [Input the number]'
+      type = gets.chomp.to_i
+      if type == 1
+        puts 'not implemented'
+      end
+
+      if type == 2
+        puts 'not implemented'
+      end
+    end
+
 
 
     interface_active = false if option == 7
