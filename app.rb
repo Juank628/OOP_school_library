@@ -27,6 +27,7 @@ def option3_type1
   permission = gets.downcase
   permission_traslator = { y: true, n: false }
   Student.new(age, nil, name, parent_permission: permission_traslator[permission])
+  puts 'Person created successfully'
 end
 
 def option3_type2
@@ -37,6 +38,16 @@ def option3_type2
   print 'Specialization: '
   specialization = gets.chomp
   Teacher.new(age, specialization, name)
+  puts 'Person created successfully'
+end
+
+def option4
+  print 'Title: '
+  title = gets.chomp
+  print 'Author: '
+  author = gets.chomp
+  Book.new(title, author)
+  puts 'Book created successfully'
 end
 
 def main
@@ -57,6 +68,7 @@ def main
     option1 if option == 1
     option2 if option == 2
     option3 if option == 3
+    option4 if option == 4
 
     interface_active = false if option == 7
 
