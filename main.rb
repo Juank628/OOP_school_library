@@ -1,32 +1,27 @@
-require_relative './classes/person'
-require_relative './classes/decorator_capitalize'
-require_relative './classes/decorator_trimmer'
-require_relative './classes/classroom'
-require_relative './classes/student'
-require_relative './classes/rental'
-require_relative './classes/book'
+require_relative './app'
 
-# Project 2: Decorators
-person = Person.new(22, 'maximilianus')
-p person.correct_name
-capitalized_person = DecoratorCapitalize.new(person)
-p capitalized_person.correct_name
-capitalized_trimmed_person = DecoratorTrimmer.new(capitalized_person)
-p capitalized_trimmed_person.correct_name
+def main
+  interface_active = true
+  puts "Welcome to School Library App! \n\n"
 
-# Project 3: Relations
-classroom_a1 = Classroom.new('A1')
-student1 = Student.new(17, nil)
-classroom_a1.add_student(student1)
+  while interface_active
+    puts 'Please choose an option by enterin a number:'
+    puts '1 - List of all books'
+    puts '2 - List of all people'
+    puts '3 - Create a person'
+    puts '4 - Create a book'
+    puts '5 - Create a rental'
+    puts '6 - List all rental for a given person id'
+    puts '7 - Exit'
 
-p student1
-p classroom_a1
+    option = gets.chomp.to_i
+    if option > 6 || option < 1
+      puts 'Thank you for using this app'
+      break
+    end
 
-person2 = Person.new(41, 'Juan')
-book1 = Book.new('The Island', 'Issac')
-book2 = Book.new('Horror history', 'Carl')
-rental1 = Rental.new(Time.now, book1, person2)
-rental2 = Rental.new(Time.now, book2, person2)
+    send("option#{option}")
+  end
+end
 
-p rental1
-p rental2
+main
