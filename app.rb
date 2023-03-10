@@ -1,6 +1,8 @@
 require_relative './classes/book'
 require_relative './classes/student'
 require_relative './classes/teacher'
+require_relative './classes/person'
+require_relative './classes/rental'
 
 def option1
   Book.all.each { |book| puts "Title: \"#{book.title}\", Author: #{book.author}" }
@@ -27,7 +29,7 @@ def option3_type1
   permission = gets.downcase
   permission_traslator = { y: true, n: false }
   Student.new(age, nil, name, parent_permission: permission_traslator[permission])
-  puts 'Person created successfully'
+  puts "Person created successfully \n\n"
 end
 
 def option3_type2
@@ -38,7 +40,7 @@ def option3_type2
   print 'Specialization: '
   specialization = gets.chomp
   Teacher.new(age, specialization, name)
-  puts 'Person created successfully'
+  puts "Person created successfully \n\n"
 end
 
 def option4
@@ -47,7 +49,33 @@ def option4
   print 'Author: '
   author = gets.chomp
   Book.new(title, author)
-  puts 'Book created successfully'
+  puts "Book created successfully \n\n"
+end
+
+def option5
+  puts 'Select a book from the following list by numbers:'
+  books_list = Book.all
+  books_list.each_with_index do |book, index|
+    puts "#{index}) Title: \"#{book.title}\" Author: #{book.author}"
+  end
+  book_index = gets.to_i
+
+  puts "\n Select a person from the following list by numbers:"
+  persons_list = Person.all
+  persons_list.each_with_index do |person, index|
+    puts "#{index}) [#{person.class.name}] Name: #{person.name} ID: #{person.id} Age: #{person.age}"
+  end
+  person_index = gets.to_i
+
+  print 'Date: '
+  date = gets.chomp
+  new_rent = Rental.new(date, books_list[book_index], persons_list[person_index])
+  books_list[book_index].add_rental(new_rent)
+  persons_list[person_index].add_rental(new_rent)
+end
+
+def option6
+  Rental.all.each { |rental| puts "Date: #{rental.date}, Book: #{rental.book.title} by #{rental.book.author}" }
 end
 
 def main
@@ -63,15 +91,11 @@ def main
     puts '5 - Create a rental'
     puts '6 - List all rental for a given person id'
     puts '7 - Exit'
+
     option = gets.chomp.to_i
+    break if option > 6 || option < 1
 
-    option1 if option == 1
-    option2 if option == 2
-    option3 if option == 3
-    option4 if option == 4
-
-    interface_active = false if option == 7
-
+    send("option#{option}")
   end
 end
 
