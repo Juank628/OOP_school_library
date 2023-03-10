@@ -4,11 +4,11 @@ class Person < Nameable
   attr_accessor :age, :name, :rentals
   attr_reader :id
 
-  def initialize(age, name = 'Unknown', parent_permission: true)
+  def initialize(age, name = 'Unknown')
     super()
+    @id = rand(1000)
     @age = age
     @name = name
-    @parent_permission = parent_permission
     @rentals = []
   end
 
@@ -27,6 +27,10 @@ class Person < Nameable
   def add_rental(rental)
     @rentals.push(rental)
     rental.person = self
+  end
+
+  def self.all
+    ObjectSpace.each_object(self).to_a
   end
 
   private :of_age?
