@@ -72,10 +72,16 @@ def option5
   new_rent = Rental.new(date, books_list[book_index], persons_list[person_index])
   books_list[book_index].add_rental(new_rent)
   persons_list[person_index].add_rental(new_rent)
+  puts "Rental created successfully \n\n"
 end
 
 def option6
-  Rental.all.each { |rental| puts "Date: #{rental.date}, Book: #{rental.book.title} by #{rental.book.author}" }
+  print 'ID of person: '
+  id = gets.to_i
+  filter_list = Rental.all.select { |rental| rental.person.id == id }
+  puts 'Rentals:'
+  filter_list.each { |rental| puts "Date: #{rental.date}, Book: #{rental.book.title} by #{rental.book.author}" }
+  puts ''
 end
 
 def main
