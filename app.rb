@@ -6,15 +6,17 @@ require_relative './classes/rental'
 
 def option1
   Book.all.each { |book| puts "Title: \"#{book.title}\", Author: #{book.author}" }
+  puts ''
 end
 
 def option2
   Student.all.each { |student| puts "[Student] Name: #{student.name}, ID: #{student.id}, Age: #{student.age}" }
   Teacher.all.each { |teacher| puts "[Teacher] Name: #{teacher.name}, ID: #{teacher.id}, Age: #{teacher.age}" }
+  puts ''
 end
 
 def option3
-  puts 'Do you want to create a student (1) or a teacher (2)? [Input the number]'
+  print 'Do you want to create a student (1) or a teacher (2)? [Input the number]: '
   type = gets.chomp.to_i
   option3_type1 if type == 1
   option3_type2 if type == 2
@@ -59,13 +61,15 @@ def option5
     puts "#{index}) Title: \"#{book.title}\" Author: #{book.author}"
   end
   book_index = gets.to_i
+  puts ''
 
-  puts "\n Select a person from the following list by numbers:"
+  puts 'Select a person from the following list by numbers:'
   persons_list = Person.all
   persons_list.each_with_index do |person, index|
     puts "#{index}) [#{person.class.name}] Name: #{person.name} ID: #{person.id} Age: #{person.age}"
   end
   person_index = gets.to_i
+  puts ''
 
   print 'Date: '
   date = gets.chomp
@@ -80,15 +84,15 @@ def option6
   id = gets.to_i
   filter_list = Rental.all.select { |rental| rental.person.id == id }
   puts 'Rentals:'
-  filter_list.each { |rental| puts "Date: #{rental.date}, Book: #{rental.book.title} by #{rental.book.author}" }
+  filter_list.each { |rental| puts "Date: #{rental.date}, Book: \"#{rental.book.title}\" by #{rental.book.author}" }
   puts ''
 end
 
 def main
   interface_active = true
+  puts "Welcome to School Library App! \n\n"
 
   while interface_active
-    puts 'Welcome to School Library App!'
     puts 'Please choose an option by enterin a number:'
     puts '1 - List of all books'
     puts '2 - List of all people'
@@ -99,7 +103,10 @@ def main
     puts '7 - Exit'
 
     option = gets.chomp.to_i
-    break if option > 6 || option < 1
+    if option > 6 || option < 1
+      puts 'Thank you for using this app'
+      break
+    end
 
     send("option#{option}")
   end
